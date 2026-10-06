@@ -1,0 +1,170 @@
+/* ============ Tokens de diseño ============ */
+:root {
+  --papel: #F6F4EE;
+  --borde: #E4E0D5;
+  --tinta: #0F1D1A;
+  --tinta-suave: #3B4743;
+  --noche: #12302A;
+  --teal: #0E5C4F;
+  --menta: #E4EFE8;
+  --ambar: #E8AA1A;
+  --fuente-titulo: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --fuente-texto: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --sombra: 0 1px 2px rgba(18,48,42,.04), 0 8px 24px rgba(18,48,42,.05);
+}
+
+body, .q-layout, .q-page-container {
+  font-family: var(--fuente-texto);
+  background: var(--papel);
+  color: var(--tinta);
+  -webkit-font-smoothing: antialiased;
+}
+a:focus-visible, button:focus-visible, .q-btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+/* ============ Barra lateral ============ */
+.q-drawer-container .q-drawer, .q-drawer-container .q-drawer__content, .app-drawer { background: #12302A !important; color: #fff !important; }
+.brand { display: flex; align-items: center; gap: 12px; padding: 26px 22px 20px; text-decoration: none; }
+.brand__logo { width: 44px; height: 44px; border-radius: 12px; background: var(--ambar); color: var(--noche); display: grid; place-items: center; font: 700 22px var(--fuente-titulo); flex: none; }
+.brand__name { font: 700 19px/1.1 var(--fuente-titulo); color: #fff; }
+.brand__sub { font-size: 13px; color: #D5E3DD; margin-top: 2px; }
+
+.periodo { margin: 0 16px; padding: 12px 14px; border-radius: 12px; background: rgba(255,255,255,.08); }
+.periodo__title { font-weight: 700; font-size: 15px; color: #fff; }
+.periodo__sub { font-size: 13px; color: #D5E3DD; margin-top: 2px; }
+
+.nav-label { padding: 28px 24px 10px; font-size: 12px; letter-spacing: .1em; color: #D5E3DD; font-weight: 700; text-transform: uppercase; }
+.nav-list { padding: 0 14px; }
+.nav-item.q-item { min-height: 50px; border-radius: 12px; margin-bottom: 4px; padding: 0 14px; color: #fff !important; font-weight: 500; font-size: 16px; position: relative; opacity: 1; }
+.nav-item .q-item__section--avatar { min-width: 0; padding-right: 14px; color: #D5E3DD; }
+.nav-item.q-item:hover { background: rgba(255,255,255,.1); opacity: 1; }
+.nav-item.q-item--active { background: rgba(255,255,255,.16); color: #fff; font-weight: 700; opacity: 1; }
+.nav-item.q-item--active .q-item__section--avatar { color: var(--ambar); }
+.nav-item.q-item--active::before { content: ''; position: absolute; left: -14px; top: 10px; bottom: 10px; width: 4px; border-radius: 0 4px 4px 0; background: var(--ambar); }
+.mobile-bar { background: var(--noche); color: #fff; }
+.mobile-bar a { color: #fff; text-decoration: none; }
+
+/* ============ Estructura de vistas ============ */
+.vista { background: var(--papel); }
+.vista__cuerpo { padding: 28px 32px 48px; display: flex; flex-direction: column; gap: 24px; max-width: 1400px; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+@media (max-width: 1280px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .stats { grid-template-columns: 1fr; } .vista__cuerpo { padding: 16px 14px 40px; } }
+
+.panel-blanco { background: #fff; border: 1px solid var(--borde); border-radius: 20px; padding: 26px 28px; box-shadow: var(--sombra); }
+.panel-blanco h2 { font: 700 24px/1.2 var(--fuente-titulo); margin: 0 0 4px; }
+.panel-blanco__sub { color: var(--tinta-suave); margin: 0 0 20px; font-size: 15px; line-height: 1.5; max-width: 70ch; }
+@media (max-width: 640px) { .panel-blanco { padding: 20px 16px; } }
+
+.filtros { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.filtro { border: 1px solid var(--borde); background: #fff; border-radius: 999px; padding: 7px 16px; font: 500 14.5px var(--fuente-texto); cursor: pointer; color: var(--tinta); transition: background .15s; }
+.filtro:hover { background: var(--papel); }
+.filtro--on, .filtro--on:hover { background: var(--noche); color: #fff; border-color: var(--noche); }
+
+.insignia { display: inline-flex; align-items: center; gap: 4px; padding: 4px 12px; border-radius: 999px; font: 600 13.5px var(--fuente-texto); border: 0; white-space: nowrap; }
+.insignia--btn { cursor: pointer; }
+.insignia--activo { background: #dcedf0; color: #0d5566; }
+.insignia--aprobado { background: #dcefe2; color: #166534; }
+.insignia--reprobado { background: #f9dcdc; color: #9b1c1c; }
+.insignia--retirado { background: #e8e9e4; color: #4f5a55; }
+
+.avatar-mini { width: 38px; height: 38px; border-radius: 50%; background: var(--menta); color: var(--teal); display: inline-grid; place-items: center; font: 700 13px var(--fuente-texto); flex: none; }
+.celda-persona { display: flex; align-items: center; gap: 12px; }
+.celda-persona a { color: inherit; font-weight: 600; text-decoration: none; }
+.celda-persona a:hover { color: var(--teal); text-decoration: underline; }
+.celda-persona small { display: block; color: var(--tinta-suave); font-size: 13px; }
+
+.btn-ambar.q-btn { background: var(--ambar); color: var(--noche); font-weight: 700; border-radius: 12px; }
+.btn-gris.q-btn { background: #ECEAE2; color: var(--tinta); font-weight: 600; border-radius: 12px; }
+
+.tabla.q-table__container { border: 1px solid var(--borde); border-radius: 14px; overflow: hidden; }
+.tabla thead tr { background: #F3F1EA; }
+.tabla thead th { font: 700 13px var(--fuente-texto); color: var(--tinta-suave); text-transform: uppercase; letter-spacing: .04em; }
+.tabla tbody td { font-size: 15px; height: 62px; }
+.tabla tbody tr:hover td { background: #FAF9F5; }
+
+.vacio { text-align: center; color: var(--tinta-suave); padding: 28px 12px; width: 100%; }
+.enlace { color: var(--teal); font-weight: 600; }
+
+/* ============ Modales (q-dialog) ============ */
+.q-dialog__backdrop { background: rgba(18,48,42,.5); backdrop-filter: blur(5px); }
+.dialogo { width: 560px; max-width: 95vw; border-radius: 22px !important; overflow: hidden; box-shadow: 0 24px 60px rgba(10,30,26,.35) !important; background: #fff; }
+.dialogo__cabecera { position: relative; background: linear-gradient(135deg, var(--noche) 0%, var(--teal) 100%); color: #fff; padding: 20px 20px 20px 24px; display: flex; align-items: center; gap: 14px; }
+.dialogo__cabecera::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: linear-gradient(90deg, var(--ambar), transparent 70%); }
+.dialogo__icono { width: 42px; height: 42px; border-radius: 12px; background: var(--ambar); color: var(--noche); display: grid; place-items: center; flex: none; }
+.dialogo__titulo { flex: 1; min-width: 0; font: 700 21px/1.2 var(--fuente-titulo); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.dialogo__cerrar.q-btn { color: #D5E3DD; background: rgba(255,255,255,.1); }
+.dialogo__cerrar.q-btn:hover { background: rgba(255,255,255,.2); color: #fff; }
+.dialogo__cuerpo { padding: 24px 24px 8px; }
+.dialogo__cuerpo > .panel-blanco__sub:first-child { margin-top: 0; }
+.dialogo__acciones { display: flex; justify-content: flex-end; gap: 10px; margin: 20px -24px 0; padding: 16px 24px; background: #FAF9F5; border-top: 1px solid var(--borde); }
+.dialogo__acciones .q-btn { border-radius: 12px; padding: 8px 20px; font-weight: 600; }
+.dialogo__acciones .q-btn.bg-primary { box-shadow: 0 4px 12px rgba(14,92,79,.28); }
+
+/* Campos más amables */
+.q-field--outlined .q-field__control { border-radius: 12px; background: #fff; }
+.q-field--outlined .q-field__control:before { border-color: var(--borde); border-width: 1.5px; }
+.q-field--outlined:hover .q-field__control:before { border-color: #bfd3cb; }
+.q-field--outlined.q-field--focused .q-field__control { box-shadow: 0 0 0 4px rgba(14,92,79,.1); }
+.q-field--outlined.q-field--focused .q-field__control:after { border-width: 2px; border-color: var(--teal); }
+.q-field--float .q-field__label, .q-field__label { font-weight: 500; }
+
+/* Menú desplegable de los select */
+.q-menu.menu-select { border-radius: 16px; border: 1px solid var(--borde); box-shadow: 0 16px 40px rgba(18,48,42,.18); padding: 6px; }
+.menu-select .q-item { border-radius: 10px; min-height: 48px; margin-bottom: 2px; padding: 8px 12px; color: var(--tinta); transition: background .12s; }
+.menu-select .q-item:hover, .menu-select .q-item.q-manual-focusable--focused { background: #F3F1EA; }
+.menu-select .q-item--active { background: var(--menta); color: var(--teal); font-weight: 700; }
+.menu-select .q-item__label--caption { color: var(--tinta-suave); font-size: 12.5px; }
+.menu-select .q-item__section--avatar { min-width: 0; padding-right: 12px; }
+.menu-select__titulo { padding: 8px 12px 6px; font: 700 11.5px var(--fuente-texto); letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-suave); }
+.opcion-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--menta); color: var(--teal); display: grid; place-items: center; font: 700 12px var(--fuente-texto); }
+.opcion-chip { font: 700 11px var(--fuente-texto); padding: 3px 9px; border-radius: 999px; background: #dcefe2; color: #166534; white-space: nowrap; }
+.opcion-chip--lleno { background: #f9dcdc; color: #9b1c1c; }
+
+/* Selector de estado */
+.insignia--btn { transition: transform .12s, box-shadow .12s; }
+.insignia--btn:hover { box-shadow: 0 2px 8px rgba(18,48,42,.15); transform: translateY(-1px); }
+.estado-item .estado-punto { width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
+.estado-item--activo { color: #0d5566; } .estado-item--aprobado { color: #166534; }
+.estado-item--reprobado { color: #9b1c1c; } .estado-item--retirado { color: #4f5a55; }
+.estado-item .q-item__label { color: var(--tinta); font-weight: 600; }
+.estado-item.q-item--active { background: var(--menta); }
+
+/* ============ Formularios dentro de modales ============ */
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 16px; }
+.form-grid .full { grid-column: 1 / -1; }
+@media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
+.dialogo .q-field { padding-bottom: 6px; }
+.dialogo .q-field--outlined .q-field__control { min-height: 54px; }
+.dialogo .q-field__native, .dialogo .q-field__input { font-size: 15.5px; color: var(--tinta); }
+.dialogo .q-field__label { font-size: 15px; color: var(--tinta-suave); }
+.dialogo .q-field__prepend .q-icon { color: var(--teal); opacity: .85; }
+.dialogo .q-field__bottom { font-size: 12.5px; padding-top: 4px; }
+.dialogo .q-field__suffix { color: var(--tinta-suave); font-size: 13.5px; }
+.dialogo__seccion { font: 700 11.5px var(--fuente-texto); letter-spacing: .08em; text-transform: uppercase; color: var(--tinta-suave); margin: 0 0 12px; }
+
+/* ============ SweetAlert2 con el tema de la app ============ */
+.swal2-container { backdrop-filter: blur(4px); }
+.swal2-container.swal2-backdrop-show, .swal2-container.swal2-noanimation { background: rgba(18,48,42,.5); }
+.swal2-container.swal2-top-end { backdrop-filter: none; background: transparent !important; }
+.swal-app.swal2-popup { font-family: var(--fuente-texto); border-radius: 22px; padding: 28px 28px 0; width: 30em; max-width: 92vw; box-shadow: 0 24px 60px rgba(10,30,26,.35); overflow: hidden; }
+.swal-app__titulo.swal2-title { font: 700 24px/1.25 var(--fuente-titulo); color: var(--tinta); padding: 8px 0 0; }
+.swal-app__texto.swal2-html-container { color: var(--tinta-suave); font-size: 15.5px; line-height: 1.55; margin: 10px 4px 0; }
+.swal-app__acciones.swal2-actions { margin: 26px -28px 0; padding: 16px 28px; width: calc(100% + 56px); background: #FAF9F5; border-top: 1px solid var(--borde); justify-content: flex-end; gap: 10px; }
+.swal-app__btn { font: 600 15px var(--fuente-texto); border: 0; border-radius: 12px; padding: 11px 22px; cursor: pointer; transition: filter .15s, transform .1s; }
+.swal-app__btn:hover { filter: brightness(.95); } .swal-app__btn:active { transform: scale(.97); }
+.swal-app__btn:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+.swal-app__btn--ok { background: var(--teal); color: #fff; box-shadow: 0 4px 12px rgba(14,92,79,.28); }
+.swal2-popup.swal-app:has(.swal2-icon-warning) .swal-app__btn--ok { background: #C4372B; box-shadow: 0 4px 12px rgba(196,55,43,.3); }
+.swal-app__btn--cancel { background: #ECEAE2; color: var(--tinta); }
+.swal2-icon { margin: 4px auto 0; }
+
+.swal-toast.swal2-popup { font-family: var(--fuente-texto); border-radius: 14px; padding: 12px 16px; background: #fff; border: 1px solid var(--borde); box-shadow: 0 12px 32px rgba(18,48,42,.2); border-left: 5px solid var(--teal); }
+.swal-toast--error { border-left-color: #C4372B; } .swal-toast--warning { border-left-color: var(--ambar); } .swal-toast--info { border-left-color: #3A8FA8; }
+.swal-toast__texto.swal2-title { font: 600 14.5px var(--fuente-texto); color: var(--tinta); margin: 0 8px; }
+.swal-toast .swal2-timer-progress-bar { background: rgba(14,92,79,.25); }
+
+.swal-errores { list-style: none; margin: 4px 0 0; padding: 0; text-align: left; display: flex; flex-direction: column; gap: 8px; }
+.swal-errores li { background: #FDEEEC; border: 1px solid #F4C9C4; border-left: 4px solid #C4372B; color: #7A1F17; border-radius: 10px; padding: 9px 14px; font-size: 14.5px; font-weight: 500; }
+
+/* Las alertas de SweetAlert deben verse por encima de los diálogos de Quasar (z-index 6000) */
+.swal2-container { z-index: 10000 !important; }
